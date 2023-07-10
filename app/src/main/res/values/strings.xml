@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GoDonut</string>
+    <string name="title">Gonuts\nwith\nDonuts</string>
+    <string name="sub_title">Gonuts with Donuts is a Sri Lanka\ndedicated food outlets for specialize\nmanufacturing of Donuts in Colombo,\nSri Lanka.</string>
 </resources>
