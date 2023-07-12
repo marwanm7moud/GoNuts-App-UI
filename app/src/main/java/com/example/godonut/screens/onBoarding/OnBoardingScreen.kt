@@ -10,6 +10,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -25,16 +26,21 @@ import com.example.godonut.R
 import com.example.godonut.ui.theme.Background
 import com.example.godonut.ui.theme.GoDonutTheme
 import com.example.godonut.ui.theme.Primary
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun OnBoardingScreen(navController: NavHostController) {
-    OnBoardingContent(){
+fun OnBoardingScreen(navController: NavHostController, systemUiController: SystemUiController) {
+    SideEffect {
+        systemUiController.setStatusBarColor(color = Primary)
+    }
+    OnBoardingContent() {
         navController.navigate(GoNutRoutes.HomeScreen.route)
     }
 }
 
 @Composable
-fun OnBoardingContent(navigate: ()->Unit) {
+fun OnBoardingContent(navigate: () -> Unit) {
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
@@ -65,13 +71,14 @@ fun OnBoardingContent(navigate: ()->Unit) {
                 }
         )
         Button(
-            onClick = navigate ,
-            colors=ButtonDefaults.buttonColors(containerColor = Color.White),
-            modifier = Modifier.fillMaxWidth()
+            onClick = navigate,
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(horizontal = 40.dp)
                 .padding(bottom = 30.dp)
                 .height(55.dp)
-                .constrainAs(getStartedButton){
+                .constrainAs(getStartedButton) {
                     bottom.linkTo(parent.bottom)
                 }
 
@@ -95,6 +102,7 @@ fun OnBoardingContent(navigate: ()->Unit) {
 fun OnBoardingScreenPreview() {
     GoDonutTheme {
         val navController = rememberNavController()
-        OnBoardingScreen(navController)
+        val systemUiController = rememberSystemUiController()
+        OnBoardingScreen(navController, systemUiController)
     }
 }

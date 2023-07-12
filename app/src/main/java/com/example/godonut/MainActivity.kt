@@ -14,6 +14,7 @@ import com.example.godonut.screens.DetailsScreen
 import com.example.godonut.screens.HomeScreen
 import com.example.godonut.screens.onBoarding.OnBoardingScreen
 import com.example.godonut.ui.theme.GoDonutTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,11 +28,21 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = GoNutRoutes.OnBoardingScreen.route) {
-                        composable(GoNutRoutes.OnBoardingScreen.route) { OnBoardingScreen(navController) }
+                    val systemUiController = rememberSystemUiController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = GoNutRoutes.OnBoardingScreen.route
+                    ) {
+                        composable(GoNutRoutes.OnBoardingScreen.route) {
+                            OnBoardingScreen(
+                                navController,
+                                systemUiController
+                            )
+                        }
                         composable(GoNutRoutes.HomeScreen.route) { HomeScreen() }
                         composable(GoNutRoutes.DetailsScreen.route) { DetailsScreen() }
                     }
+
                 }
             }
         }
