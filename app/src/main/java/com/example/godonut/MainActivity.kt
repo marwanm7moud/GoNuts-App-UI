@@ -39,8 +39,8 @@ class MainActivity : ComponentActivity() {
                                 systemUiController
                             )
                         }
-                        composable(GoNutRoutes.HomeScreen.route) { HomeScreen() }
-                        composable(GoNutRoutes.DetailsScreen.route) { DetailsScreen() }
+                        composable(GoNutRoutes.HomeScreen.route) { HomeScreen(navController) }
+                        composable(GoNutRoutes.DetailsScreen.route) { DetailsScreen(navController) }
                     }
 
                 }

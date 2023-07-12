@@ -18,12 +18,11 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.godonut.R
 import com.example.godonut.ui.theme.GoDonutTheme
 import com.example.godonut.ui.theme.Primary
-import com.example.godonut.ui.theme.Text100
 import com.example.godonut.ui.theme.Text60
 
 
 @Composable
-fun DonutsCard() {
+fun DonutsCard(navigateToDetails: () -> Unit) {
     ConstraintLayout() {
         val (image, background, title, price) = createRefs()
         val centerImage = createGuidelineFromTop(0.3f)
@@ -39,7 +38,7 @@ fun DonutsCard() {
             shadowElevation = 4.dp,
             modifier = Modifier
                 .clickable {
-
+                    navigateToDetails.invoke()
                 }
                 .constrainAs(background) {
                     top.linkTo(centerImage)
@@ -90,6 +89,6 @@ fun DonutsCard() {
 @Composable
 fun DonutsCardPreview() {
     GoDonutTheme {
-        DonutsCard()
+        DonutsCard(){}
     }
 }

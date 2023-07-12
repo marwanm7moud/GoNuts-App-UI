@@ -16,7 +16,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +28,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.godonut.GoNutRoutes
 import com.example.godonut.R
 import com.example.godonut.composables.DonutsCard
 import com.example.godonut.composables.TodaysOfferCard
@@ -38,9 +40,16 @@ import com.example.godonut.ui.theme.Primary
 import com.example.godonut.ui.theme.Text100
 import com.example.godonut.ui.theme.Text60
 
+@Composable
+fun HomeScreen(navController: NavHostController) {
+    HomeContent(){
+        navController.navigate(GoNutRoutes.DetailsScreen.route)
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeContent(navigateToDetails: () -> Unit) {
     Scaffold(
         bottomBar = {
             NavigationBar(
@@ -132,7 +141,7 @@ fun HomeScreen() {
                     horizontalArrangement = Arrangement.spacedBy(45.dp)
                 ) {
                     items(5) {
-                        TodaysOfferCard()
+                        TodaysOfferCard(navigateToDetails)
                     }
                 }
             }
@@ -150,7 +159,7 @@ fun HomeScreen() {
                     horizontalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
                     items(5) {
-                        DonutsCard()
+                        DonutsCard(navigateToDetails)
                     }
                 }
             }
@@ -162,6 +171,7 @@ fun HomeScreen() {
 @Composable
 fun HomeScreenPreview() {
     GoDonutTheme {
-        HomeScreen()
+        val navController = rememberNavController()
+        HomeScreen(navController)
     }
 }
