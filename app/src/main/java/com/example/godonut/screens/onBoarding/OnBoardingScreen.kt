@@ -23,6 +23,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.godonut.GoNutRoutes
 import com.example.godonut.R
+import com.example.godonut.composables.CustomButton
 import com.example.godonut.ui.theme.Background
 import com.example.godonut.ui.theme.GoDonutTheme
 import com.example.godonut.ui.theme.Primary
@@ -70,30 +71,13 @@ fun OnBoardingContent(navigate: () -> Unit) {
                     top.linkTo(title.bottom)
                 }
         )
-        Button(
+        CustomButton(
             onClick = navigate,
-            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp)
-                .padding(bottom = 30.dp)
-                .height(55.dp)
-                .constrainAs(getStartedButton) {
-                    bottom.linkTo(parent.bottom)
-                }
-
-        ) {
-            Text(
-                text = "Get Started",
-                color = Color.Black,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold,
-                modifier = Modifier
-                    .padding(horizontal = 40.dp)
-            )
-        }
-
-
+            text = "Get Started",
+            modifier = Modifier.constrainAs(getStartedButton) {
+                bottom.linkTo(parent.bottom)
+            }.padding(horizontal = 40.dp)
+        )
     }
 }
 

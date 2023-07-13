@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     val systemUiController = rememberSystemUiController()
                     NavHost(
                         navController = navController,
-                        startDestination = GoNutRoutes.OnBoardingScreen.route
+                        startDestination = GoNutRoutes.DetailsScreen.route
                     ) {
                         composable(GoNutRoutes.OnBoardingScreen.route) {
                             OnBoardingScreen(
