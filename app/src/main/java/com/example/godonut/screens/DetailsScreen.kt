@@ -63,7 +63,7 @@ fun DetailsScreen(navController: NavHostController) {
 }
 
 @Composable
-fun DetailsContent(navController: () -> Unit) {
+fun DetailsContent(navigateBack: () -> Unit) {
 
     var count by remember {
         mutableStateOf(1) }
@@ -100,7 +100,7 @@ fun DetailsContent(navController: () -> Unit) {
                     start.linkTo(parent.start)
                 },
             contentPadding = PaddingValues(0.dp),
-            onClick = {}
+            onClick = navigateBack
         ) {
             Icon(
                 modifier = Modifier,
@@ -214,7 +214,7 @@ fun DetailsContent(navController: () -> Unit) {
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 Text(
-                    text = "£16",
+                    text = "£${16*count}",
                     color = Text100,
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Medium,
