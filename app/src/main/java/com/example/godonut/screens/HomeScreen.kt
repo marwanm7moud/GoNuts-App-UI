@@ -39,10 +39,12 @@ import com.example.godonut.ui.theme.GoDonutTheme
 import com.example.godonut.ui.theme.Primary
 import com.example.godonut.ui.theme.Text100
 import com.example.godonut.ui.theme.Text60
+import com.example.godonut.ui.theme.TodayCardColor
+import com.example.godonut.ui.theme.TodayCardColor2
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
-    HomeContent(){
+    HomeContent() {
         navController.navigate(GoNutRoutes.DetailsScreen.route)
     }
 }
@@ -96,7 +98,7 @@ fun HomeContent(navigateToDetails: () -> Unit) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(end = 40.dp)
-                        .padding(start = 38.dp, top = 81.dp)
+                        .padding(start = 38.dp, top = 20.dp)
                 ) {
                     Column {
                         Text(
@@ -140,8 +142,11 @@ fun HomeContent(navigateToDetails: () -> Unit) {
                     modifier = Modifier.padding(top = 25.dp),
                     horizontalArrangement = Arrangement.spacedBy(45.dp)
                 ) {
-                    items(5) {
-                        TodaysOfferCard(navigateToDetails)
+                    items(7) {
+                        if (it % 2 == 1)
+                            TodaysOfferCard(TodayCardColor2, navigateToDetails)
+                        else
+                            TodaysOfferCard(TodayCardColor, navigateToDetails)
                     }
                 }
             }

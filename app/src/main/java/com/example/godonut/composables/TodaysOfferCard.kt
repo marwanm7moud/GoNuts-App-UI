@@ -36,7 +36,7 @@ import com.example.godonut.ui.theme.Text60
 import com.example.godonut.ui.theme.TodayCardColor
 
 @Composable
-fun TodaysOfferCard(navigateToDetails: () -> Unit) {
+fun TodaysOfferCard(color: Color = TodayCardColor,navigateToDetails: () -> Unit ) {
     ConstraintLayout(
         modifier = Modifier.clickable {
             navigateToDetails.invoke()
@@ -45,7 +45,7 @@ fun TodaysOfferCard(navigateToDetails: () -> Unit) {
         val (background, favorate, donut, title, subtitle, price) = createRefs()
         Surface(
             shape = RoundedCornerShape(20.dp),
-            color = TodayCardColor,
+            color = color,
             shadowElevation = 4.dp,
             modifier = Modifier
                 .constrainAs(background) {}
